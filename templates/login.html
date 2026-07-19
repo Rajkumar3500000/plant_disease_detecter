@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
+            margin: 0;
+        }
+
+        .wrap {
+            max-width: 420px;
+            margin: 60px auto;
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #166534;
+        }
+
+        .alert {
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .alert.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .alert.danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .alert.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #15823f;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .link {
+            display: block;
+            margin-top: 14px;
+            text-align: center;
+            color: #166534;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .nav-links a {
+            color: #166534;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="post">
+            <label>Username</label>
+            <input type="text" name="username" required>
+            <label>Password</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a class="link" href="{{ url_for('register') }}">Create an account</a>
+        <a class="link" href="{{ url_for('landing') }}">Back to home</a>
+    </div>
+</body>
+
+</html>
